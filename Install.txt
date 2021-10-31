@@ -1,0 +1,15 @@
+While I'm finishing an automated installer, you will have to set everything up manually.
+
+Note: to generate the passwords, use an online SHA hashing tool, such as https://www.freeformatter.com/hmac-generator.html
+	!!MAKE SURE TO SET THE ALGORITHM TO SHA384!!
+
+For UUIDs, open uuid.php and it will generate a random one for you.
+
+	1. Create a new database, copy 'config.sample.php' to 'config.php' and enter the connection information into it.
+
+	2. Using PHPMyAdmin or whatever, execute the following query:
+			CREATE TABLE `users` (`username` TEXT NOT NULL, `password` TEXT NOT NULL, `displayName` TEXT NOT NULL, `clientToken` TEXT NOT NULL, `accessToken` TEXT NOT NULL, UNIQUE name (username(32))) CHARSET=utf8 COLLATE utf8_bin
+				This will create the needed table in the database.
+
+	3. Run the following query, replacing the text in angle brackets <> with the proper values:
+			INSERT INTO `users` (`username`, `password`, `displayName`, `clientToken`) VALUES ('<DESIRED USERNAME>', '<PASSWORD HASH>', '<DESIRED USERNAME>', '<UUID>')";
